@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import MoviesList from './Components/MoviesList'
 import FavouriteList from './Components/FavouriteList'
+import {Switch, Route} from 'react-router-dom'
 import './App.css';
+import MovieInfo from './Components/MovieInfo';
 
 class App extends Component {
   constructor(props){
@@ -48,8 +50,15 @@ class App extends Component {
     const {movies, favourites} = this.state
     return (
       <div className="App">
-        <FavouriteList removeFiles={this.removeFiles} favMovies={favourites}/>
-        <MoviesList handleFav={this.handleFav} movies={movies} />
+        <Switch>
+          <Route exact path='/' render={() => (
+            <>
+              <FavouriteList removeFiles={this.removeFiles} favMovies={favourites}/>
+              <MoviesList handleFav={this.handleFav} movies={movies} />
+            </>
+          )} />
+          <Route path='/info' render={({location}) => <MovieInfo {...location} />} />
+        </Switch>
       </div>
     );
   }
