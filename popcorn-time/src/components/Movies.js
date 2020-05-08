@@ -9,6 +9,7 @@ class Movies extends React.Component {
     state = {
         favorites: [],
         movies: [],
+        genres: [],
     }
 
     componentDidMount = () => {
@@ -17,7 +18,10 @@ class Movies extends React.Component {
         ).then(
             response => response.data
         ).then(
-            result => this.setState({ movies: result.movies })
+            result => {
+                this.setState({ movies: result.movies })
+                this.setState({ genres: result.genres })
+            }
         ).catch(error => console.log(error))
     }
 
