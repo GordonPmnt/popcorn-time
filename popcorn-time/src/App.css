@@ -14,8 +14,13 @@
   justify-content: space-between;
   color: white;
   background-color: #1b2838;
+  border-radius: 5px;
   padding: 10px 10px;
   margin: 10px 0;
+}
+.movie-card:hover{
+  transform: scale(1.05);
+  transition: transform 450ms;
 }
 .btn{
   border-radius: 30px;
