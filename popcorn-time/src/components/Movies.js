@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import Favorite from './Favorite';
 
 
 class Movies extends React.Component {
@@ -33,6 +34,14 @@ class Movies extends React.Component {
 
         return (
             <div>
+                <h4>My favorite movies: </h4>
+                {
+                    favorites.map(favorite => <Favorite 
+                            key={favorite.id}
+                            {...favorite}
+                        />
+                    )
+                }
                 <h4>Movies: </h4>
                 {
                     movies.map(movie => <Movie 
