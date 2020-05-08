@@ -19,7 +19,7 @@ class Movies extends React.Component {
         ).catch(error => console.log(error))
     }
 
-    addFavorite = (id, title) => {
+    addToFavorite = (id, title) => {
         this.setState(prevState => ({ 
             favorites: [
                 ...prevState.favorites,
@@ -30,13 +30,14 @@ class Movies extends React.Component {
 
     render () {
         const { favorites, movies } = this.state;
+
         return (
             <div>
                 <h4>Movies: </h4>
                 {
                     movies.map(movie => <Movie 
                             key={movie.id}
-                            handleClick={this.handleClick}
+                            addToFavorite={this.addToFavorite}
                             {...movie} 
                         />
                     )

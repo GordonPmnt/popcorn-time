@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Movie = ({ addFavorite, id, title }) => {
+const Movie = ({ addToFavorite, id, title }) => {
     const styles = {
         p: {
             margin: '1px'
@@ -18,7 +18,7 @@ const Movie = ({ addFavorite, id, title }) => {
             <p style={styles.p}>
                 <button 
                     style={styles.button} 
-                    onClick={() => addFavorite(id, title)}
+                    onClick={() => addToFavorite(id, title)}
                 >
                     favorites + 
                 </button>
