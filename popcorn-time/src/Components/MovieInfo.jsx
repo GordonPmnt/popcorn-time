@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const getRandom = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
@@ -11,9 +12,12 @@ const MovieInfo = ({state}) => {
     const {title, actor, plot} = movieDisplay[0]
     return(
         <div>
-            <h2>{title}</h2>
-            <h3>With {actor}</h3>
-            <p>Plot : {plot}</p>
+            <Link to='/'>Back to the list</Link>
+            <div>
+                <h2>{title}</h2>
+                <h3>With {actor}</h3>
+                <p>Plot : {plot}</p>
+            </div>
         </div>
     )
 }
