@@ -1,19 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MovieList from './MovieList'
 
-class Movie extends Component{
-    constructor(props){
-        super(props);
-        this.state ={
-
-        }
-    }
-    render() {
-        return(
-            <div>
-                
-            </div>
-        )
-    }
-};
-
-export default Movie;
+const Movie = () => {
+    return(
+        <div>
+            <h1>Hello</h1>
+        </div>
+    )
+}
+export default Movie
