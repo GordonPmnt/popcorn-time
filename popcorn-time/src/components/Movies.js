@@ -22,12 +22,17 @@ class Movies extends React.Component {
     }
 
     addToFavorite = (id, title) => {
-        this.setState(prevState => ({ 
-            favorites: [
-                ...prevState.favorites,
-                { id, title },
-            ]
-        }))
+        const { favorites } = this.state;
+        const ids = favorites.map(favorite => favorite.id)
+
+        if(!ids.includes(id)) {
+            this.setState(prevState => ({ 
+                favorites: [
+                    ...prevState.favorites,
+                    { id, title },
+                ]
+            }))
+        }
     }
 
     removeFromFavorites = id => {
