@@ -12,6 +12,7 @@ class Movies extends React.Component {
         favorites: [],
         movies: [],
         genres: [],
+        selectedGenre: ''
     }
 
     componentDidMount = () => {
@@ -45,10 +46,14 @@ class Movies extends React.Component {
         this.setState(prevState => ({
             favorites: prevState.favorites.filter(favorite => favorite.id !== id)})
         )
-    }        
+    }
+    
+    handleGenreSelection = event => {
+        this.setState({ selectedGenre: event.target.value })
+    }
 
     render () {
-        const { favorites, movies, genres } = this.state;
+        const { favorites, movies, genres, selectedGenre } = this.state;
 
         return (
             <div>
@@ -69,13 +74,18 @@ class Movies extends React.Component {
                     </Link>
                 }
                 <h4>Movies: </h4>
-                <h5>Filter movies:</h5>
                 <div style={{ width: '200px' }}>
-                    <Dropdown
-                        options={genres} 
-                        onChange={this._onSelect} 
-                        placeholder="Select a genre" 
-                    />
+                    <label for="genre">Choose a genre:</label>
+                        <select onChange={event => this.handleGenreSelection(event)} id="genre">
+                            {genres.map(genre => 
+                                <option
+                                    key={genre} 
+                                    value={genre}
+                                >
+                                    {genre}
+                                </option>)
+                            }
+                        </select>
                 </div>
                 {
                     movies.map(movie => <Movie 
