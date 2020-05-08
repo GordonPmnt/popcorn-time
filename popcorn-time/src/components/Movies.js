@@ -5,7 +5,8 @@ import Movie from './Movie';
 
 class Movies extends React.Component {
     state = {
-        movies: []
+        favorites: [],
+        movies: [],
     }
 
     componentDidMount = () => {
@@ -18,12 +19,27 @@ class Movies extends React.Component {
         ).catch(error => console.log(error))
     }
 
+    addFavorite = (id, title) => {
+        this.setState(prevState => ({ 
+            favorites: [
+                ...prevState.favorites,
+                { id, title },
+            ]
+        }))
+    }
+
     render () {
-        const { movies } = this.state;
+        const { favorites, movies } = this.state;
         return (
             <div>
+                <h4>Movies: </h4>
                 {
-                    movies.map(movie => <Movie key={movie.id} {...movie} />)
+                    movies.map(movie => <Movie 
+                            key={movie.id}
+                            handleClick={this.handleClick}
+                            {...movie} 
+                        />
+                    )
                 }
             </div>
         )
