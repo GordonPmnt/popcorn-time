@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import axios from 'axios'
+import MoviesList from './Components/MoviesList'
+import FavouriteList from './Components/FavouriteList'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      movie: []
+    }
+  }
+
+  componentDidMount = () => {
+    this.getMovies();
+  }
+
+  getMovies = () => {
+      axios.get('https://raw.githubusercontent.com/wildcodeschoolparis/datas/master/movies.json')
+      .then(res => res.data)
+      .then(data => {
+          const {movies} = data
+          this.setState({movies})
+      })
+  }
+
+
+  render(){
+    const {movies} = this.state
+    return (
+      <div className="App">
+        <MoviesList movies={movies}/>
+        <FavouriteList />
+      </div>
+    );
+  }
 }
 
 export default App;
