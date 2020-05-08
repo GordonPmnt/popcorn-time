@@ -1,11 +1,9 @@
 .App{
   padding: 20px 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .col{
   width: 50%;
+  border-bottom: 1px solid black;
 }
 .col h2{
   text-align: center;

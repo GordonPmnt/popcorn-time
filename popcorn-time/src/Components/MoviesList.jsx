@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import Movie from './Movie'
 
 class MoviesList extends Component{
@@ -12,11 +11,10 @@ class MoviesList extends Component{
 
 
     render(){
-        const {movies} = this.props
+        const {movies, handleFav} = this.props
         return(
             <div className='col'>
-                <h2>Movie List</h2>
-                {movies.map(movie => <Movie key={movie.id} {...movie} />)}
+                {movies.map(movie => <Movie key={movie.id} handleFav={handleFav} {...movie} />)}
             </div>
         )
     }

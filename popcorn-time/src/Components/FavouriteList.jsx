@@ -1,9 +1,10 @@
 import React from 'react'
+import MovieFav from './MovieFav'
 
-const FavouriteList = () => {
+const FavouriteList = ({favMovies, removeFiles}) => {
     return(
         <div className='col'>
-            <h2>Your favourite movies</h2>
+            {favMovies.map(movie => <MovieFav key={movie.id} removeFiles={removeFiles} {...movie}/>)}
         </div>
     )
 }

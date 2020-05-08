@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Movie = ({title}) => {
+const Movie = ({title, handleFav, id}) => {
     return(
         <div className='movie-card'>
             <p>{title}</p>
-            <button>Add to favourite</button>
+            <button onClick={() => handleFav(id)}> Add to favourite </button>
         </div>
     )
 }
