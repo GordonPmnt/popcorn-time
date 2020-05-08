@@ -29,6 +29,12 @@ class Movies extends React.Component {
         }))
     }
 
+    removeFromFavorites = id => {
+        this.setState(prevState => ({
+            favorites: prevState.favorites.filter(favorite => favorite.id !== id)})
+        )
+    }        
+
     render () {
         const { favorites, movies } = this.state;
 
@@ -38,6 +44,7 @@ class Movies extends React.Component {
                 {
                     favorites.map(favorite => <Favorite 
                             key={favorite.id}
+                            removeFromFavorites={this.removeFromFavorites}
                             {...favorite}
                         />
                     )
