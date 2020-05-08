@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import Favorite from './Favorite';
+import { Link } from "react-router-dom";
 
 
 class Movies extends React.Component {
@@ -49,6 +50,7 @@ class Movies extends React.Component {
                         />
                     )
                 }
+                <Link to={`/selection/${1}`}>Pick</Link>
                 <h4>Movies: </h4>
                 {
                     movies.map(movie => <Movie 
