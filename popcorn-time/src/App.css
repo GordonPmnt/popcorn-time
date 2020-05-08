@@ -15,7 +15,7 @@
   color: white;
   background-color: #1b2838;
   padding: 10px 10px;
-  margin-bottom: 5px;
+  margin: 10px 0;
 }
 .btn{
   border-radius: 30px;
@@ -46,4 +46,8 @@ a{
   color: #fff;
   text-decoration: none;
   margin-bottom: 20px;
+}
+.actors{
+  color: gray;
+  font-size: smaller;
 }
