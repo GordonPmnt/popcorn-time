@@ -3,8 +3,6 @@ import axios from 'axios';
 import Movie from './Movie';
 import Favorite from './Favorite';
 import { Link } from "react-router-dom";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 
 
 class Movies extends React.Component {
@@ -88,7 +86,9 @@ class Movies extends React.Component {
                         </select>
                 </div>
                 {
-                    movies.map(movie => <Movie 
+                    movies
+                        .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)
+                        .map(movie => <Movie 
                             key={movie.id}
                             addToFavorite={this.addToFavorite}
                             {...movie} 
