@@ -1,16 +1,22 @@
 import React from "react";
 
-class Movie extends React.Component {
-    state = {
+const Movie = ({movieDescr, addTofavourite}) => {
+
+    const styles = {
+        container:{
+            display: 'flex',
+            backgroundColor: 'yellow',
+        }
     }
 
-    render () {
-        return (
-            <div>
-                MOVIES
-            </div>
+    return (
+            <tr>
+                <td style={styles.container}>
+                    {movieDescr.title}
+                </td>
+                <button onClick={addTofavourite}>Add to favourites</button>
+            </tr>
         )
     }
-}
 
 export default Movie;

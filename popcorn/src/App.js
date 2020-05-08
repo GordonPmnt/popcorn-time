@@ -1,10 +1,10 @@
 import React from 'react';
-import Movie from './components/Movie';
+import MovieRoom from './components/MovieRoom';
 
 function App() {
   return (
     <div className="App">
-     <Movie />
+      <MovieRoom />
     </div>
   );
 }
