@@ -3,6 +3,8 @@ import axios from 'axios';
 import Movie from './Movie';
 import Favorite from './Favorite';
 import { Link } from "react-router-dom";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 
 class Movies extends React.Component {
@@ -46,7 +48,7 @@ class Movies extends React.Component {
     }        
 
     render () {
-        const { favorites, movies } = this.state;
+        const { favorites, movies, genres } = this.state;
 
         return (
             <div>
@@ -67,6 +69,14 @@ class Movies extends React.Component {
                     </Link>
                 }
                 <h4>Movies: </h4>
+                <h5>Filter movies:</h5>
+                <div style={{ width: '200px' }}>
+                    <Dropdown
+                        options={genres} 
+                        onChange={this._onSelect} 
+                        placeholder="Select a genre" 
+                    />
+                </div>
                 {
                     movies.map(movie => <Movie 
                             key={movie.id}
