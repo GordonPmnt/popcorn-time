@@ -4,7 +4,7 @@ const Movie = ({title, handleFav, id}) => {
     return(
         <div className='movie-card'>
             <p>{title}</p>
-            <button onClick={() => handleFav(id)}> Add to favourite </button>
+            <button className="btn btn-add" onClick={() => handleFav(id)}> Add to favourite </button>
         </div>
     )
 }

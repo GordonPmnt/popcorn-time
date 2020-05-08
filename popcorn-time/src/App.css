@@ -17,3 +17,24 @@
   padding: 10px 10px;
   margin-bottom: 5px;
 }
+.btn{
+  border-radius: 30px;
+  border: none;
+}
+.btn-add{
+  background-color: chartreuse;
+  border: 1px solid chartreuse;
+}
+.btn-add:hover{
+  background-color: #fff;
+  color: chartreuse;
+}
+
+.btn-del{
+  background-color: crimson;
+  border: 1px solid crimson;
+}
+.btn-del:hover{
+  background-color: #fff;
+  color: crimson;
+}
