@@ -50,7 +50,13 @@ class Movies extends React.Component {
                         />
                     )
                 }
-                <Link to={`/selection/${1}`}>Pick</Link>
+                {favorites.length > 0 &&
+                    <Link 
+                        to={`/selection/${favorites[Math.floor(Math.random() * favorites.length)].title}`}
+                    >
+                        Pick
+                    </Link>
+                }
                 <h4>Movies: </h4>
                 {
                     movies.map(movie => <Movie 
