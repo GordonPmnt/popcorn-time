@@ -15,7 +15,7 @@ class Movies extends React.Component {
 
     styles = {
         container: {
-            margin: '2% 10% 5% 10%',
+            margin: '2% 5% 5% 5%',
         },
     }
 

@@ -9,18 +9,22 @@ const theme = createMuiTheme({
   overrides: {
     MuiCardHeader: {
       root: {
-        width: '160px',
-        height: '80px',
+        width: '180px',
+        height: '90px',
         padding: '10px',
         alignItems: 'flex-start',
       },
       title: {
         fontSize: '0.8rem',
         fontWeight: 'bold',
+        height: '30px',
+        overflow: 'scroll',
       },
       subheader: {
         fontSize: '0.7rem',
+        height: '40px',
         color: '#96999C',
+        overflow: 'scroll',
       },
     },
   },

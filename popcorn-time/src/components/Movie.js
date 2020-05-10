@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
+import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -19,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#96999C',
         margin: 15,
         padding: '5px',
-        borderRadius: '20px',
+        borderRadius: '15px',
         background: 'linear-gradient(145deg, #292b2e, #222427)',
         boxShadow: '5px 5px 10px #202225, -5px -5px 10px #2c2e31',
         border: '1px solid rgba(0, 0, 0, 0.02)',
@@ -30,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     },
     screen: {
         display: 'flex',
-        width: '90px',
-        height: '130px',
+        width: '105px',
+        height: '140px',
         marginTop: '8px',
         borderRadius: '10px',
         background: '#26282B',
@@ -41,19 +39,46 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         borderRadius: '5px',
-        width: '65px',
-        height: '105px',
+        width: '85px',
+        height: '120px',
         fontSize: '0.5rem',
         opacity: '0.85',
         border: '1px solid rgba(0, 0, 0, 0.12)',
     },
+    button: {
+        borderRadius: '100%',
+        background: 'linear-gradient(145deg, #292b2e, #222427)',
+        boxShadow: '5px 5px 9px #1e2022, -5px -5px 9px #2e3034',
+        border: '1px solid rgba(0, 0, 0, 0.02)',
+    },
+    buttonPressed: {
+        color: '#ff8300',
+        background: '#26282B',
+        boxShadow: 'none',
+        border: 'solid 1px #ff8300',
+    },
     expand: {
         transform: 'rotate(0deg)',
-        marginLeft: 'auto',
+        marginLeft: '10px',
+        borderRadius: '100%',
+        background: 'linear-gradient(145deg, #292b2e, #222427)',
+        boxShadow: '5px 5px 9px #1e2022, -5px -5px 9px #2e3034',
+        border: '1px solid rgba(0, 0, 0, 0.02)',
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+        boxShadow: 'none',
+        background: '#26282B',
+        color: '#ff8300',
+        border: 'solid 1px #ff8300',
     },
+    plot: {
+        fontSize: '0.6rem', 
+        overflow: 'scroll',
+        width: '85px',
+        height: '120px',
+        border: '1px solid rgba(0, 0, 0, 0.12)',
+    }
 }));
 
 const Movie = ({ 
@@ -70,6 +95,7 @@ const Movie = ({
     
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
+    const [ pressed, setPressed ] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -79,11 +105,19 @@ const Movie = ({
         <Card className={classes.root}>
             <div className={classes.header}>
                 <CardHeader
-                    title={title}
-                    subheader={`${year} - ${genres.join(', ')}`}
+                    title={expanded ? director : title}
+                    subheader={expanded ? actors : `${year} - ${genres.join(', ')}`}
                 />
                 <CardActions disableSpacing>
-                    <IconButton onClick={() => addToFavorite(id, title)} >
+                    <IconButton 
+                        onClick={() => {
+                            addToFavorite(id, title)
+                            setPressed(!pressed)
+                        }}
+                        className={clsx(classes.button, {
+                            [classes.buttonPressed]: pressed,
+                        })}
+                    >
                         <FavoriteIcon />
                     </IconButton>
                     <IconButton
@@ -99,21 +133,19 @@ const Movie = ({
                 </CardActions>
             </div>
             <div className={classes.screen}>
+            {expanded 
+            ?
+                <p className={classes.plot}>
+                    {plot}
+                </p>
+            :
                 <img 
                     className={classes.media}
                     src={posterUrl}
                     alt={title}
                 />
+            }
             </div>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    {plot}
-                    <hr />
-                    Director: {director}
-                    <br />
-                    Actors: {actors}
-                </CardContent>
-            </Collapse>
         </Card>
     );
 }
