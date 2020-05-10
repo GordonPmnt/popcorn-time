@@ -17,6 +17,13 @@ class Movies extends React.Component {
         container: {
             margin: '2% 5% 5% 5%',
         },
+        favorites: {
+            borderRadius: '10px',
+            background: '#26282B',
+            boxShadow: 'inset 5px 5px 10px #1d1e20, inset -5px -5px 10px #303236',
+            padding: '2% 5% 5% 5%',
+            width: '100%',
+        }
     }
 
     componentDidMount = () => {
@@ -78,7 +85,8 @@ class Movies extends React.Component {
 
         return (
             <div style={this.styles.container}>
-                <h4>My favorite movies: </h4>
+                <h3>My favorite movies: </h3>
+                <div style={this.styles.favorites}>
                 {
                     favorites.map(favorite => <Favorite 
                             key={favorite.id}
@@ -94,8 +102,9 @@ class Movies extends React.Component {
                         Pick
                     </Link>
                 }
+                </div>
                 <div>
-                    <h4>Movies: </h4>
+                    <h3>Movies: </h3>
                     <div style={{ width: '200px' }}>
                         <label for="genre">Choose a genre:</label>
                             <select onChange={event => this.handleGenreSelection(event)} id="genre">
