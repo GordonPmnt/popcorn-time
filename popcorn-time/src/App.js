@@ -27,6 +27,11 @@ const theme = createMuiTheme({
         overflow: 'scroll',
       },
     },
+    MuiChip: {
+      deleteIcon: {
+        color: '#ff8300',
+      }
+    }
   },
 });
 

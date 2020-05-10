@@ -23,6 +23,8 @@ class Movies extends React.Component {
             boxShadow: 'inset 5px 5px 10px #1d1e20, inset -5px -5px 10px #303236',
             padding: '2% 5% 5% 5%',
             width: '100%',
+            height: '150px',
+            overflow: 'scroll',
         }
     }
 
@@ -86,6 +88,16 @@ class Movies extends React.Component {
         return (
             <div style={this.styles.container}>
                 <h3>My favorite movies: </h3>
+                {favorites.length > 0
+                    ?
+                        <Link
+                            to={`/selection/${favorites[Math.floor(Math.random() * favorites.length)].title}`}
+                        >
+                            <p style={{ color: '#ff8300' }} >Pick</p>
+                        </Link>
+                    : 
+                        <p>Pick</p>
+                }
                 <div style={this.styles.favorites}>
                 {
                     favorites.map(favorite => <Favorite 
@@ -95,13 +107,7 @@ class Movies extends React.Component {
                         />
                     )
                 }
-                {favorites.length > 0 &&
-                    <Link 
-                        to={`/selection/${favorites[Math.floor(Math.random() * favorites.length)].title}`}
-                    >
-                        Pick
-                    </Link>
-                }
+
                 </div>
                 <div>
                     <h3>Movies: </h3>
