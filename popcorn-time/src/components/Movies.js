@@ -3,7 +3,6 @@ import axios from 'axios';
 import Movie from './Movie';
 import Favorite from './Favorite';
 import { Link } from "react-router-dom";
-import './Movies.css';
 
 
 class Movies extends React.Component {
@@ -94,7 +93,7 @@ class Movies extends React.Component {
                             </select>
                     </div>
                 </div>
-                <div className={"movies"}>
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     {
                         movies
                             .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)

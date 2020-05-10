@@ -17,14 +17,30 @@ const useStyles = makeStyles((theme) => ({
         background: '#26282B',
         color: '#96999C',
         margin: 20,
-        padding: 5,
+        padding: '5px',
         borderRadius: '20px',
         background: 'linear-gradient(145deg, #292b2e, #222427)',
         boxShadow: '5px 5px 10px #202225, -5px -5px 10px #2c2e31',
         border: '1px solid rgba(0, 0, 0, 0.02)',
     },
+    screen: {
+        display: 'flex',
+        width: '90px',
+        height: '130px',
+        marginTop: '8px',
+        borderRadius: '10px',
+        background: '#26282B',
+        boxShadow: 'inset 5px 5px 10px #1e2022, inset -5px -5px 10px #2e3034',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     media: {
-        paddingTop: '56.25%', // 16:9
+        borderRadius: '5px',
+        width: '65px',
+        height: '105px',
+        fontSize: '0.5rem',
+        opacity: '0.85',
+        border: '1px solid rgba(0, 0, 0, 0.12)',
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -60,11 +76,13 @@ const Movie = ({
                 title={title}
                 subheader={`${year} - ${genres.join(', ')}`}
             />
-            <CardMedia
-                className={classes.media}
-                image={posterUrl}
-                title={title}
-            />
+            <div className={classes.screen}>
+                <img 
+                    className={classes.media}
+                    src={posterUrl}
+                    alt={title}
+                />
+            </div>
             <CardActions disableSpacing>
             <IconButton onClick={() => addToFavorite(id, title)} >
                 <FavoriteIcon />
