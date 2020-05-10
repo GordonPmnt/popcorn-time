@@ -2,14 +2,21 @@
   padding: 20px 50px;
 }
 .col{
-  width: 50%;
-  border-bottom: 1px solid black;
+  border-bottom: 3px dashed chartreuse;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-.col h2{
+ h1{
   text-align: center;
 }
+.fav-col{
+  display: flex;
+  flex-direction: column;
+}
 .movie-card{
-  max-width: 90%;
+  width: 40%;
   display: flex;
   justify-content: space-between;
   color: white;
@@ -50,6 +57,7 @@ a{
   border-radius: 30px;
   color: #fff;
   text-decoration: none;
+  margin: auto;
   margin-bottom: 20px;
 }
 .actors{

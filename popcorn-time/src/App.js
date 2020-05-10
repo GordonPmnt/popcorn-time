@@ -11,7 +11,9 @@ class App extends Component {
     super(props);
     this.state = {
       movies: [],
-      favourites: []
+      genres: [],
+      favourites: [],
+      selection: ""
     }
   }
 
@@ -23,16 +25,18 @@ class App extends Component {
       axios.get('https://raw.githubusercontent.com/wildcodeschoolparis/datas/master/movies.json')
       .then(res => res.data)
       .then(data => {
-          const {movies} = data
-          this.setState({movies})
+          const {movies, genres} = data
+          this.setState({movies, genres})
       })
   }
 
   handleFav = (currentID) => {
     let {favourites, movies} = this.state;
     const currentMovie = movies.filter(movie => movie.id === currentID);
+
     movies = movies.filter(movie => movie.id !== currentID);
     favourites.push(currentMovie[0]);
+
     this.setState({favourites, movies})
   }
 
@@ -46,15 +50,23 @@ class App extends Component {
     this.setState({favourites})
   }
 
+  getSelection = (selection) => {
+    this.setState({selection})
+  }
+
   render(){
-    const {movies, favourites} = this.state
+    const { favourites } = this.state
     return (
       <div className="App">
         <Switch>
           <Route exact path='/' render={() => (
             <>
               <FavouriteList removeFiles={this.removeFiles} favMovies={favourites}/>
-              <MoviesList handleFav={this.handleFav} movies={movies} />
+              <MoviesList 
+                handleFav={this.handleFav}
+                getSelection={this.getSelection}
+                {...this.state}
+              />
             </>
           )} />
           <Route path='/info' render={({location}) => <MovieInfo {...location} />} />

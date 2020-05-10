@@ -5,13 +5,19 @@ import {Link} from 'react-router-dom'
 const FavouriteList = ({favMovies, removeFiles}) => {
     const favLength = favMovies.length
     return(
-        <div className='col'>
-            {favLength >= 1 && <Link to={{
+        <>
+        {favLength >= 1 && 
+        <div className='fav-col'>
+            <h1>Favourites films</h1>
+            <Link to={{
                 pathname: '/info',
                 state: {movieList: favMovies}
-            }}> Pick a random game </Link>}
-            {favMovies.map(movie => <MovieFav key={movie.id} removeFiles={removeFiles} {...movie}/>)}
-        </div>
+            }}> Pick a random game </Link>
+            <div className="col">
+                {favMovies.map(movie => <MovieFav key={movie.id} removeFiles={removeFiles} {...movie}/>)}
+            </div>
+        </div>}
+    </>
     )
 }
 
