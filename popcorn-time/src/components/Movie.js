@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
-import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -13,7 +12,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        background: '#26282B',
         color: '#96999C',
         margin: 15,
         padding: '5px',
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '5px 5px 9px #1e2022, -5px -5px 9px #2e3034',
         border: '1px solid rgba(0, 0, 0, 0.02)',
     },
-    buttonPressed: {
+    buttonfavorite: {
         color: '#ff8300',
         background: '#26282B',
         boxShadow: 'none',
@@ -78,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
         width: '85px',
         height: '120px',
         border: '1px solid rgba(0, 0, 0, 0.12)',
+        padding: '5px',
     }
 }));
 
@@ -90,15 +89,25 @@ const Movie = ({
     actors,
     plot,
     posterUrl, 
+    favorite,
     addToFavorite,
+    removeFromFavorites,
     }) => {
     
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
-    const [ pressed, setPressed ] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const handleFavoriteClick = () => {
+        if(favorite) {
+            removeFromFavorites(id)
+        }
+        if(!favorite) {
+            addToFavorite(id, title)
+        }
     };
 
     return (
@@ -110,12 +119,9 @@ const Movie = ({
                 />
                 <CardActions disableSpacing>
                     <IconButton 
-                        onClick={() => {
-                            addToFavorite(id, title)
-                            setPressed(!pressed)
-                        }}
+                        onClick={() => handleFavoriteClick()}
                         className={clsx(classes.button, {
-                            [classes.buttonPressed]: pressed,
+                            [classes.buttonfavorite]: favorite,
                         })}
                     >
                         <FavoriteIcon />

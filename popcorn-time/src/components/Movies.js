@@ -10,7 +10,7 @@ class Movies extends React.Component {
         favorites: [],
         movies: [],
         genres: [],
-        selectedGenre: ''
+        selectedGenre: '',
     }
 
     styles = {
@@ -26,7 +26,12 @@ class Movies extends React.Component {
             response => response.data
         ).then(
             result => {
-                const { genres, movies } = result
+                let { genres, movies } = result
+                movies = movies.map(movie => {
+                    movie.favorite = false
+                    return movie
+                })
+                console.log(movies)
                 this.setState({ genres, movies })
             }
         ).catch(error => console.log(error))
@@ -41,15 +46,27 @@ class Movies extends React.Component {
                 favorites: [
                     ...prevState.favorites,
                     { id, title },
-                ]
+                ],
+                movies: prevState.movies.map(movie => {
+                    if(movie.id === id) {
+                        return { ...movie, favorite: true }
+                    }
+                    return movie
+                })
             }))
         }
     }
 
     removeFromFavorites = id => {
         this.setState(prevState => ({
-            favorites: prevState.favorites.filter(favorite => favorite.id !== id)})
-        )
+            favorites: prevState.favorites.filter(favorite => favorite.id !== id),
+            movies: prevState.movies.map(movie => {
+                if(movie.id === id) {
+                    return { ...movie, favorite: false }
+                }
+                return movie
+            })
+        }))
     }
     
     handleGenreSelection = event => {
@@ -100,6 +117,7 @@ class Movies extends React.Component {
                             .map(movie => <Movie 
                                 key={movie.id}
                                 addToFavorite={this.addToFavorite}
+                                removeFromFavorites={this.removeFromFavorites}
                                 {...movie} 
                             />
                         )
