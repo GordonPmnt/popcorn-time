@@ -3,6 +3,7 @@ import axios from 'axios';
 import Movie from './Movie';
 import Favorite from './Favorite';
 import { Link } from "react-router-dom";
+import './Movies.css';
 
 
 class Movies extends React.Component {
@@ -71,30 +72,32 @@ class Movies extends React.Component {
                         Pick
                     </Link>
                 }
-                <h4>Movies: </h4>
-                <div style={{ width: '200px' }}>
-                    <label for="genre">Choose a genre:</label>
-                        <select onChange={event => this.handleGenreSelection(event)} id="genre">
-                            {genres.map(genre => 
-                                <option
-                                    key={genre} 
-                                    value={genre}
-                                >
-                                    {genre}
-                                </option>)
-                            }
-                        </select>
+                <div className={"movies"}>
+                    <h4>Movies: </h4>
+                    <div style={{ width: '200px' }}>
+                        <label for="genre">Choose a genre:</label>
+                            <select onChange={event => this.handleGenreSelection(event)} id="genre">
+                                {genres.map(genre => 
+                                    <option
+                                        key={genre} 
+                                        value={genre}
+                                    >
+                                        {genre}
+                                    </option>)
+                                }
+                            </select>
+                    </div>
+                    {
+                        movies
+                            .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)
+                            .map(movie => <Movie 
+                                key={movie.id}
+                                addToFavorite={this.addToFavorite}
+                                {...movie} 
+                            />
+                        )
+                    }
                 </div>
-                {
-                    movies
-                        .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)
-                        .map(movie => <Movie 
-                            key={movie.id}
-                            addToFavorite={this.addToFavorite}
-                            {...movie} 
-                        />
-                    )
-                }
             </div>
         )
     }
