@@ -72,7 +72,7 @@ class Movies extends React.Component {
                         Pick
                     </Link>
                 }
-                <div className={"movies"}>
+                <div>
                     <h4>Movies: </h4>
                     <div style={{ width: '200px' }}>
                         <label for="genre">Choose a genre:</label>
@@ -87,6 +87,8 @@ class Movies extends React.Component {
                                 }
                             </select>
                     </div>
+                </div>
+                <div className={"movies"}>
                     {
                         movies
                             .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)
