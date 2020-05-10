@@ -14,14 +14,19 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        display: 'flex',
         background: '#26282B',
         color: '#96999C',
-        margin: 20,
+        margin: 15,
         padding: '5px',
         borderRadius: '20px',
         background: 'linear-gradient(145deg, #292b2e, #222427)',
         boxShadow: '5px 5px 10px #202225, -5px -5px 10px #2c2e31',
         border: '1px solid rgba(0, 0, 0, 0.02)',
+        flexDirection: 'row',
+    },
+    header: {
+        flexDirection: 'column',
     },
     screen: {
         display: 'flex',
@@ -72,10 +77,27 @@ const Movie = ({
 
     return (
         <Card className={classes.root}>
-            <CardHeader
-                title={title}
-                subheader={`${year} - ${genres.join(', ')}`}
-            />
+            <div className={classes.header}>
+                <CardHeader
+                    title={title}
+                    subheader={`${year} - ${genres.join(', ')}`}
+                />
+                <CardActions disableSpacing>
+                    <IconButton onClick={() => addToFavorite(id, title)} >
+                        <FavoriteIcon />
+                    </IconButton>
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                </CardActions>
+            </div>
             <div className={classes.screen}>
                 <img 
                     className={classes.media}
@@ -83,21 +105,6 @@ const Movie = ({
                     alt={title}
                 />
             </div>
-            <CardActions disableSpacing>
-            <IconButton onClick={() => addToFavorite(id, title)} >
-                <FavoriteIcon />
-            </IconButton>
-            <IconButton
-                className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-            >
-                <ExpandMoreIcon />
-            </IconButton>
-            </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     {plot}

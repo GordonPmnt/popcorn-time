@@ -15,7 +15,7 @@ class Movies extends React.Component {
 
     styles = {
         container: {
-            margin: '10%',
+            margin: '2% 10% 5% 10%',
         },
     }
 
@@ -93,7 +93,7 @@ class Movies extends React.Component {
                             </select>
                     </div>
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     {
                         movies
                             .filter(movie => selectedGenre ? movie.genres.includes(selectedGenre) : movie)
