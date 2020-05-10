@@ -12,15 +12,18 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 200,
         background: '#26282B',
         color: '#96999C',
         margin: 20,
+        padding: 5,
+        borderRadius: '20px',
+        background: 'linear-gradient(145deg, #292b2e, #222427)',
+        boxShadow: '5px 5px 10px #202225, -5px -5px 10px #2c2e31',
+        border: '1px solid rgba(0, 0, 0, 0.02)',
     },
     media: {
-        height: 0,
         paddingTop: '56.25%', // 16:9
     },
     expand: {
@@ -41,11 +44,11 @@ const Movie = ({
     actors,
     plot,
     posterUrl, 
-    addToFavorite 
+    addToFavorite,
     }) => {
     
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [ expanded, setExpanded ] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);

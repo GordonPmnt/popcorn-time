@@ -14,6 +14,12 @@ class Movies extends React.Component {
         selectedGenre: ''
     }
 
+    styles = {
+        container: {
+            margin: '10%',
+        },
+    }
+
     componentDidMount = () => {
         axios.get(
             'https://raw.githubusercontent.com/wildcodeschoolparis/datas/master/movies.json'
@@ -55,7 +61,7 @@ class Movies extends React.Component {
         const { favorites, movies, genres, selectedGenre } = this.state;
 
         return (
-            <div>
+            <div style={this.styles.container}>
                 <h4>My favorite movies: </h4>
                 {
                     favorites.map(favorite => <Favorite 
