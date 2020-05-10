@@ -20,8 +20,8 @@ class Movies extends React.Component {
             response => response.data
         ).then(
             result => {
-                this.setState({ movies: result.movies })
-                this.setState({ genres: result.genres })
+                const { genres, movies } = result
+                this.setState({ genres, movies })
             }
         ).catch(error => console.log(error))
     }
